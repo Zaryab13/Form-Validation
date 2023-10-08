@@ -7,19 +7,22 @@ const SimpleInput = (props) => {
   
   const onChangeNameHandler = (e) => {
     setEnteredName(e.target.value);
+
+    if (e.target.value.trim() !== "") {
+      setNameIsValid(true);
+    }
+
   };
   const onBlurNameHandler = (e) => {
     setNameTouched(true);
   
     if (enteredName.trim() === "") {
       setNameIsValid(false);
-      return
     }
   };
   
   const formSubmitHandler = (e) => {
     e.preventDefault();
-
     if (enteredName.trim() === "") {
       setNameIsValid(false);
       return;
@@ -27,9 +30,6 @@ const SimpleInput = (props) => {
 
     setNameIsValid(true)
     console.log(enteredName);
-
-    // const enteredValue = nameInputRef.current.value;
-    // console.log(enteredValue);
 
     // nameInputRef.current.value = ''; NOT IDEAL METHOD BY DIRECTING MANIPULATING DOM
     setEnteredName("");
@@ -46,7 +46,6 @@ const SimpleInput = (props) => {
         <input
           type="text"
           id="name"
-          ref={nameInputRef}
           onChange={onChangeNameHandler}
           onBlur={onBlurNameHandler}
           value={enteredName}
