@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState} from "react";
+
+
 const SimpleInput = (props) => {
-  const nameInputRef = useRef();
   const [enteredName, setEnteredName] = useState('');
   const [nameIsValid, setNameIsValid] = useState(false);
   const [nameTouched, setNameTouched] = useState(false);
@@ -23,6 +24,7 @@ const SimpleInput = (props) => {
   
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    
     if (enteredName.trim() === "") {
       setNameIsValid(false);
       return;
